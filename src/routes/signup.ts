@@ -1,9 +1,9 @@
 import express, { Request, Response } from "express";
-import { body, validationResult } from "express-validator";
-import { RequestValidationError } from "../errors/request-validation-error";
+import { body } from "express-validator";
 import { User } from "../models/user";
 import { BadRequestError } from "../errors/bad-request-error";
 import jwt from "jsonwebtoken";
+import { validateRequest } from "../middlewares/validate-request";
 
 const router = express.Router();
 
@@ -16,14 +16,8 @@ router.post(
       .isLength({ min: 4, max: 30 })
       .withMessage("Password must be between 4 to 30"),
   ],
+  validateRequest,
   async (request: Request, response: Response) => {
-    const errors = validationResult(request);
-
-    if (!errors.isEmpty()) {
-      //   return response.status(400).send(errors.array());
-      throw new RequestValidationError(errors.array());
-    }
-
     const { email, password } = request.body;
 
     const existingUser = await User.findOne({ email });
