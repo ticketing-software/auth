@@ -4,7 +4,8 @@ WORKDIR /app
 
 COPY package.json .
 
-RUN npm install
+# Install Production Packages only
+RUN npm install --only=prod
 
 COPY . .
 

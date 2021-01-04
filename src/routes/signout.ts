@@ -3,6 +3,7 @@ import express, { Request, Response } from "express";
 const router = express.Router();
 
 router.post("/api/users/signout", (request: Request, response: Response) => {
+  // Used to remove the cokkie session
   request.session = null;
 
   response.send({});

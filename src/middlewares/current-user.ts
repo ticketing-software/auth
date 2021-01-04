@@ -7,6 +7,18 @@ interface UserPayload {
   password: string;
 }
 
+// interface UserPayload {
+//   id: string;
+//   email: string;
+// }
+
+declare global {
+  namespace Express {
+    interface Request {
+      currentUser?: UserPayload;
+    }
+  }
+}
 export const currentUser = (
   request: Request,
   response: Response,
@@ -19,7 +31,7 @@ export const currentUser = (
   try {
     const payload = jwt.verify(request.session.jwt, "asdf") as UserPayload;
 
-    // request.currentUser = payload;
+    request.currentUser = payload;
   } catch (error) {}
   next();
 };
