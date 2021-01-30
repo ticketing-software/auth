@@ -65,3 +65,19 @@ jobs:
 
       - name: Image Digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+  azure-kubernetes:
+    runs-on: ubuntu-latest
+
+    needs: docker-push
+
+    steps:
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - run: |
+          az aks get-credentials --resource-group New-Ticketing-Application --name ticketing-kubernetes-cluster
+
+      - name: Restarting the Cluster
+        run: kubectl rollout restart deployment next-client

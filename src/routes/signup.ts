@@ -5,6 +5,7 @@ import { BadRequestError } from "../errors/bad-request-error";
 import jwt from "jsonwebtoken";
 import { validateRequest } from "../middlewares/validate-request";
 
+// Added a small comment
 const router = express.Router();
 
 router.post(
