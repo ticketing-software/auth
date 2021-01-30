@@ -60,6 +60,8 @@ jobs:
         with:
           push: true
           tags: varma1909/ticket-auth:latest
+          build-args: |
+            DB=${{ secrets.DB_CONNECT }}
 
       - name: Image Digest
         run: echo ${{ steps.docker_build.outputs.digest }}
