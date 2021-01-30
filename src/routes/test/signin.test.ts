@@ -12,7 +12,7 @@ it("Gives out 400 when email or password is not supplied", async () => {
   await request(app)
     .post("/api/users/signin")
     .send({
-      email: "test@test.com",
+      email: "thisisthetest@testingsite.com",
       password: "password",
     })
     .expect(400);
@@ -24,7 +24,7 @@ it("To test whether we are receiving the cookie on signin", async () => {
   await request(app)
     .post("/api/users/signup")
     .send({
-      email: "test@test.com",
+      email: "thisisthetest@testingsite.com",
       password: "password",
     })
     .expect(201);
@@ -32,7 +32,7 @@ it("To test whether we are receiving the cookie on signin", async () => {
   const response = await request(app)
     .post("/api/users/signin")
     .send({
-      email: "test@test.com",
+      email: "thisisthetest@testingsite.com",
       password: "password",
     })
     .expect(200);

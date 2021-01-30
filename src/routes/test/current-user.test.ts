@@ -5,8 +5,8 @@ it("Testing out the current user and cookie", async () => {
   const authResponse = await request(app)
     .post("/api/users/signup")
     .send({
-      email: "test@test.com",
-      password: "password",
+      email: "thisisthetest@testingsite.com",
+      password: "sdljfnlksajdfk",
     })
     .expect(201);
 
@@ -18,14 +18,16 @@ it("Testing out the current user and cookie", async () => {
     .send()
     .expect(200);
 
-  expect(response.body.currentUser.email).toEqual("test@test.com");
+  expect(response.body.currentUser.email).toEqual(
+    "thisisthetest@testingsite.com"
+  );
 });
 
-it("Testing out the current user and cookie", async () => {
-  const response = await request(app)
-    .get("/api/users/currentuser")
-    .send({})
-    .expect(200);
+// it("Testing out the current user and cookie", async () => {
+//   const response = await request(app)
+//     .post("/api/users/signout")
+//     .send({})
+//     .expect(200);
 
-  expect(response.body.currentUser).toEqual(null);
-});
+//   expect(response.body.currentUser).toEqual(null);
+// });

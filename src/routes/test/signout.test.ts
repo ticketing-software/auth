@@ -5,7 +5,7 @@ it("To Test the signout and see whether cookie is deleted", async () => {
   await request(app)
     .post("/api/users/signup")
     .send({
-      email: "test@test.com",
+      email: "thisisthetest@testingsite.com",
       password: "password",
     })
     .expect(201);
@@ -13,7 +13,7 @@ it("To Test the signout and see whether cookie is deleted", async () => {
   await request(app)
     .post("/api/users/signin")
     .send({
-      email: "test@test.com",
+      email: "thisisthetest@testingsite.com",
       password: "password",
     })
     .expect(200);
