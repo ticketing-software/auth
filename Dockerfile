@@ -1,5 +1,9 @@
 FROM node:alpine
 
+ARG DB=defaultvalue
+
+ENV DB_CONNECTION_STRING=${DB}
+
 WORKDIR /app
 
 COPY package.json .

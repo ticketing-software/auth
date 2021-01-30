@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import "dotenv/config";
 import { app } from "./app";
 
-let PORT = 3000 || process.env.PORT;
+let PORT = 3001 || process.env.PORT;
 
 const start = async () => {
   try {
@@ -16,7 +16,7 @@ const start = async () => {
     console.log(error);
   }
 
-  app.listen(3000, () => {
+  app.listen(PORT, () => {
     console.log(`Listening on PORT ${PORT}`);
   });
 };
