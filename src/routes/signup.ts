@@ -27,7 +27,10 @@ router.post(
       throw new BadRequestError("Email in use");
     }
 
-    const user = User.build({ email, password });
+    // const user = User.build({ email, password });
+
+    const user = new User({ email, password });
+
     await user.save();
 
     // Generate Json Web Token
