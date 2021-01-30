@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node
 
 ARG DB=defaultvalue
 
@@ -9,7 +9,7 @@ WORKDIR /app
 COPY package.json .
 
 # Install Production Packages only
-RUN npm install --only=prod
+RUN npm install
 
 COPY . .
 
