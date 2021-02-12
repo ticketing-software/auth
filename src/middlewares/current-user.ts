@@ -4,13 +4,7 @@ import jwt from "jsonwebtoken";
 interface UserPayload {
   id: string;
   email: string;
-  password: string;
 }
-
-// interface UserPayload {
-//   id: string;
-//   email: string;
-// }
 
 declare global {
   namespace Express {
@@ -19,19 +13,20 @@ declare global {
     }
   }
 }
+
 export const currentUser = (
-  request: Request,
-  response: Response,
+  req: Request,
+  res: Response,
   next: NextFunction
 ) => {
-  if (!request.session?.jwt) {
+  if (!req.session?.jwt) {
     return next();
   }
 
   try {
-    const payload = jwt.verify(request.session.jwt, "asdf") as UserPayload;
+    const payload = jwt.verify(req.session.jwt, "asdf") as UserPayload;
+    req.currentUser = payload;
+  } catch (err) {}
 
-    request.currentUser = payload;
-  } catch (error) {}
   next();
 };
